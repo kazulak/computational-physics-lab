@@ -15,3 +15,6 @@ __pycache__/
 *.npy
 *.npz
 data/
+
+# Claude Code agent worktrees
+.claude/worktrees/
