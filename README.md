@@ -6,9 +6,10 @@ Self-study projects in computational physics. Each one asks a concrete physics q
 | # | Project | Physics | Methods |
 |---|---|---|---|
 | 01 | [N-link pendulum](projects/01-pendulum) | Hamiltonian mechanics, deterministic chaos | symplectic vs. non-symplectic integration, Lyapunov exponents |
+| 02 | [2D Ising model](projects/02-ising) | classical phase transitions, critical slowing down | Metropolis vs Wolff Monte Carlo, Binder cumulants, autocorrelation analysis |
 | 03 | [Transverse-field Ising chain](projects/03-spin-chain) | quantum phase transitions, entanglement, CFT | sparse exact diagonalization (Lanczos), free-fermion solution, finite-size scaling |
 
-Planned (one at a time): quantum mechanics (split-operator time evolution, spectra), complex systems (Ising model / Monte Carlo, critical exponents),
+Planned (one at a time): quantum mechanics (split-operator time evolution, spectra), complex systems beyond equilibrium Ising (finite-size-scaling collapse, percolation),
 many-body physics beyond free fermions (Heisenberg/XXZ chains with symmetry sectors).
 
 ## Usage
