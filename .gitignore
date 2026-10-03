@@ -1,25 +1,17 @@
-# Virtual Environment
 .venv/
 venv/
-ENV/
-
-# Python Cache
 __pycache__/
-*.pyc
-*.pyo
-*.pyd
-
-# Pytest Cache
+*.py[cod]
+*.egg-info/
 .pytest_cache/
-
-# IDE files
+.ipynb_checkpoints/
 .vscode/
 .idea/
-
-# OS files
 .DS_Store
 
-# Outputs / Figure saves
+# Large / scratch outputs; project figures in projects/*/figures/ are committed
 *.gif
 *.mp4
-*.png
+*.npy
+*.npz
+data/

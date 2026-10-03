@@ -1,24 +1,20 @@
-[tool.poetry]
-name = "computational-physics-lab"
+[project]
+name = "cplab"
 version = "0.1.0"
-description = "A collection of numerical simulations, dynamical systems analysis, and physics visualizations."
-authors = ["Your Name <you@example.com>"]
-readme = "README.md"
-packages = [{include = "shared"}]
+description = "Computational physics projects: models, numerical methods, validation."
+requires-python = ">=3.10"
+dependencies = ["numpy", "scipy", "matplotlib"]
 
-[tool.poetry.dependencies]
-python = "^3.10"
-numpy = "^1.24.0"
-scipy = "^1.10.0"
-matplotlib = "^3.7.0"
-sympy = "^1.11.0"
-ipykernel = "^6.20.0"
-
-[tool.poetry.group.dev.dependencies]
-pytest = "^7.2.0"
-black = "^23.1.0"
-isort = "^5.12.0"
+[project.optional-dependencies]
+dev = ["pytest"]
 
 [build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["cplab"]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["cplab", "projects"]

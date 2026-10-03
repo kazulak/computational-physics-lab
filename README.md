@@ -1,87 +1,37 @@
 # Computational Physics Lab
 
-Welcome to the **Computational Physics Lab**! This repository is a collection of numerical simulations, dynamical systems analysis, and physics visualizations. The focus is on implementing physical models from classical mechanics, electromagnetism, and quantum mechanics, with a particular emphasis on Hamiltonian formulations, phase-space dynamics, and chaotic behavior.
+Self-study projects in computational physics. Each one asks a concrete physics question, builds a minimal model,
+**validates it against known results**, and reports what the numerics show. No frontends, just physics, numerics and tests.
 
----
+| # | Project | Physics | Methods |
+|---|---|---|---|
+| 01 | [N-link pendulum](projects/01-pendulum) | Hamiltonian mechanics, deterministic chaos | symplectic vs. non-symplectic integration, Lyapunov exponents |
 
-## Directory Structure
+Planned (one at a time): quantum mechanics (split-operator time evolution, spectra), complex systems (Ising model / Monte Carlo, critical exponents),
+many-body physics (exact diagonalization of spin chains).
 
-The repository is consolidated to encourage reuse of numerical methods and visual tools, keeping code clean, quiet, and aligned with standard software practices:
+## Usage
+
+```bash
+python -m venv .venv && source .venv/bin/activate   # Windows: .venv\Scripts\activate
+pip install -e ".[dev]"
+pytest                                              # all validation tests
+python projects/01-pendulum/experiments.py          # regenerate a project's figures
+```
+
+## Layout and rules
 
 ```text
-computational-physics-lab/
-├── .gitignore
-├── README.md
-├── requirements.txt              # Reference python library packages
-├── run.sh                        # One-command launcher for web application
-├── shared/                       # Python reference solvers and models
-│   ├── __init__.py
-│   ├── hamiltonian.py            # Reference MultiPendulumHamiltonian in Python
-│   └── integrators.py            # Reference ODE solvers
-└── projects/                     # Standalone simulation projects
-    └── pendulum-hamiltonian-lab/ # TS/React web app (Vite structure)
-        ├── package.json
-        ├── index.html
-        ├── tsconfig.json
-        ├── src/
-        │   ├── App.tsx           # Main application state loop
-        │   ├── main.tsx          # React application mount
-        │   ├── index.css         # Clean, quiet CSS stylesheet
-        │   ├── app/
-        │   │   └── presets.ts    # Single, double, driven presets
-        │   ├── physics/          # Decoupled physics math logic
-        │   │   ├── types.ts      # Canonical state / links definitions
-        │   │   ├── geometry.ts   # Absolute Cartesian coordinates
-        │   │   ├── mass-matrix.ts
-        │   │   ├── potential-energy.ts
-        │   │   ├── hamiltonian.ts
-        │   │   ├── external-forces.ts
-        │   │   ├── energy-balance.ts
-        │   │   └── validation.ts
-        │   ├── integration/      # Decoupled numerical solver clocks
-        │   │   ├── integrator.ts # RK4, Symplectic Euler, Euler
-        │   │   └── simulation-clock.ts
-        │   └── components/       # Interface rendering modules
-        │       ├── PlaybackControls.tsx
-        │       ├── SimulationCanvas.tsx
-        │       ├── SystemControls.tsx
-        │       ├── HamiltonianPanel.tsx
-        │       └── ...
-        └── tests/
+cplab/                  shared numerics; code moves here only once a 2nd project needs it
+projects/NN-name/
+    README.md           question → model → validation → results → lessons
+    <model>.py          the physics
+    experiments.py      reproduces every figure in the README
+    test_<model>.py     checks against analytic / independent results
+    figures/            committed outputs
 ```
 
----
-
-## Getting Started
-
-### Prerequisites
-
-- **Node.js** (v18+ and npm)
-
-### Setup and Run (One-Command Launcher)
-
-To automatically verify packages, install dependencies, and launch the Vite development server, run the launcher from the root of the repository:
-
-```bash
-./run.sh
-```
-
-This will spin up a local web server (typically on `http://localhost:5173`) and automatically serve the interactive application in your default web browser.
-
----
-
-## Reference Python Solver & Invariant Tests
-
-We maintain a Python implementation of the physics engine and integrators inside the `shared/` layer. These are used as a reference layer to run invariant and property-based regression checks.
-
-To run the unit tests:
-
-```bash
-# Set up Python virtual environment
-python3 -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
-
-# Execute physics tests
-PYTHONPATH=. pytest
-```
+1. One project at a time. Finish it (README with results) before starting the next.
+2. Every result needs a validation test against something independent: analytic limits, conservation laws, or published numbers.
+3. Plain Python + NumPy/SciPy/Matplotlib. Add a dependency only when a project needs it.
+4. Figures are reproducible from a single script.
